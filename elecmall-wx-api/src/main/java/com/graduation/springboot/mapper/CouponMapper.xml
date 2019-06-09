@@ -1,0 +1,464 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.graduation.springboot.mapper.CouponMapper">
+  <resultMap id="BaseResultMap" type="com.graduation.springboot.bean.Coupon">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+    <result column="desc" jdbcType="VARCHAR" property="desc" />
+    <result column="limit" jdbcType="SMALLINT" property="limit" />
+    <result column="low" jdbcType="INTEGER" property="low" />
+    <result column="high" jdbcType="INTEGER" property="high" />
+    <result column="inventory" jdbcType="INTEGER" property="inventory" />
+    <result column="indate" jdbcType="INTEGER" property="indate" />
+    <result column="deadline" jdbcType="TIMESTAMP" property="deadline" />
+    <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, type, desc, limit, low, high, inventory, indate, deadline, add_time, update_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from coupon
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from coupon
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.graduation.springboot.bean.Coupon">
+    insert into coupon (id, type, desc, 
+      limit, low, high, 
+      inventory, indate, deadline, 
+      add_time, update_time)
+    values (#{id,jdbcType=INTEGER}, #{type,jdbcType=VARCHAR}, #{desc,jdbcType=VARCHAR}, 
+      #{limit,jdbcType=SMALLINT}, #{low,jdbcType=INTEGER}, #{high,jdbcType=INTEGER}, 
+      #{inventory,jdbcType=INTEGER}, #{indate,jdbcType=INTEGER}, #{deadline,jdbcType=TIMESTAMP}, 
+      #{addTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.graduation.springboot.bean.Coupon">
+    insert into coupon
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="desc != null">
+        desc,
+      </if>
+      <if test="limit != null">
+        limit,
+      </if>
+      <if test="low != null">
+        low,
+      </if>
+      <if test="high != null">
+        high,
+      </if>
+      <if test="inventory != null">
+        inventory,
+      </if>
+      <if test="indate != null">
+        indate,
+      </if>
+      <if test="deadline != null">
+        deadline,
+      </if>
+      <if test="addTime != null">
+        add_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="desc != null">
+        #{desc,jdbcType=VARCHAR},
+      </if>
+      <if test="limit != null">
+        #{limit,jdbcType=SMALLINT},
+      </if>
+      <if test="low != null">
+        #{low,jdbcType=INTEGER},
+      </if>
+      <if test="high != null">
+        #{high,jdbcType=INTEGER},
+      </if>
+      <if test="inventory != null">
+        #{inventory,jdbcType=INTEGER},
+      </if>
+      <if test="indate != null">
+        #{indate,jdbcType=INTEGER},
+      </if>
+      <if test="deadline != null">
+        #{deadline,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addTime != null">
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.graduation.springboot.bean.Coupon">
+    update coupon
+    <set>
+      <if test="type != null">
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="desc != null">
+        desc = #{desc,jdbcType=VARCHAR},
+      </if>
+      <if test="limit != null">
+        limit = #{limit,jdbcType=SMALLINT},
+      </if>
+      <if test="low != null">
+        low = #{low,jdbcType=INTEGER},
+      </if>
+      <if test="high != null">
+        high = #{high,jdbcType=INTEGER},
+      </if>
+      <if test="inventory != null">
+        inventory = #{inventory,jdbcType=INTEGER},
+      </if>
+      <if test="indate != null">
+        indate = #{indate,jdbcType=INTEGER},
+      </if>
+      <if test="deadline != null">
+        deadline = #{deadline,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addTime != null">
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.graduation.springboot.bean.Coupon">
+    update coupon
+    set type = #{type,jdbcType=VARCHAR},
+      desc = #{desc,jdbcType=VARCHAR},
+      limit = #{limit,jdbcType=SMALLINT},
+      low = #{low,jdbcType=INTEGER},
+      high = #{high,jdbcType=INTEGER},
+      inventory = #{inventory,jdbcType=INTEGER},
+      indate = #{indate,jdbcType=INTEGER},
+      deadline = #{deadline,jdbcType=TIMESTAMP},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.graduation.springboot.bean.Coupon">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+    <result column="desc" jdbcType="VARCHAR" property="desc" />
+    <result column="limit" jdbcType="SMALLINT" property="limit" />
+    <result column="low" jdbcType="INTEGER" property="low" />
+    <result column="high" jdbcType="INTEGER" property="high" />
+    <result column="inventory" jdbcType="INTEGER" property="inventory" />
+    <result column="indate" jdbcType="INTEGER" property="indate" />
+    <result column="deadline" jdbcType="TIMESTAMP" property="deadline" />
+    <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, type, desc, limit, low, high, inventory, indate, deadline, add_time, update_time
+  </sql>
+  <select id="selectByExample" parameterType="com.graduation.springboot.bean.CouponExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from coupon
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from coupon
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from coupon
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.graduation.springboot.bean.CouponExample">
+    delete from coupon
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.graduation.springboot.bean.Coupon">
+    insert into coupon (id, type, desc, 
+      limit, low, high, 
+      inventory, indate, deadline, 
+      add_time, update_time)
+    values (#{id,jdbcType=INTEGER}, #{type,jdbcType=VARCHAR}, #{desc,jdbcType=VARCHAR}, 
+      #{limit,jdbcType=SMALLINT}, #{low,jdbcType=INTEGER}, #{high,jdbcType=INTEGER}, 
+      #{inventory,jdbcType=INTEGER}, #{indate,jdbcType=INTEGER}, #{deadline,jdbcType=TIMESTAMP}, 
+      #{addTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.graduation.springboot.bean.Coupon">
+    insert into coupon
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="desc != null">
+        desc,
+      </if>
+      <if test="limit != null">
+        limit,
+      </if>
+      <if test="low != null">
+        low,
+      </if>
+      <if test="high != null">
+        high,
+      </if>
+      <if test="inventory != null">
+        inventory,
+      </if>
+      <if test="indate != null">
+        indate,
+      </if>
+      <if test="deadline != null">
+        deadline,
+      </if>
+      <if test="addTime != null">
+        add_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="desc != null">
+        #{desc,jdbcType=VARCHAR},
+      </if>
+      <if test="limit != null">
+        #{limit,jdbcType=SMALLINT},
+      </if>
+      <if test="low != null">
+        #{low,jdbcType=INTEGER},
+      </if>
+      <if test="high != null">
+        #{high,jdbcType=INTEGER},
+      </if>
+      <if test="inventory != null">
+        #{inventory,jdbcType=INTEGER},
+      </if>
+      <if test="indate != null">
+        #{indate,jdbcType=INTEGER},
+      </if>
+      <if test="deadline != null">
+        #{deadline,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addTime != null">
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.graduation.springboot.bean.CouponExample" resultType="java.lang.Integer">
+    select count(*) from coupon
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update coupon
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.type != null">
+        type = #{record.type,jdbcType=VARCHAR},
+      </if>
+      <if test="record.desc != null">
+        desc = #{record.desc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.limit != null">
+        limit = #{record.limit,jdbcType=SMALLINT},
+      </if>
+      <if test="record.low != null">
+        low = #{record.low,jdbcType=INTEGER},
+      </if>
+      <if test="record.high != null">
+        high = #{record.high,jdbcType=INTEGER},
+      </if>
+      <if test="record.inventory != null">
+        inventory = #{record.inventory,jdbcType=INTEGER},
+      </if>
+      <if test="record.indate != null">
+        indate = #{record.indate,jdbcType=INTEGER},
+      </if>
+      <if test="record.deadline != null">
+        deadline = #{record.deadline,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.addTime != null">
+        add_time = #{record.addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update coupon
+    set id = #{record.id,jdbcType=INTEGER},
+      type = #{record.type,jdbcType=VARCHAR},
+      desc = #{record.desc,jdbcType=VARCHAR},
+      limit = #{record.limit,jdbcType=SMALLINT},
+      low = #{record.low,jdbcType=INTEGER},
+      high = #{record.high,jdbcType=INTEGER},
+      inventory = #{record.inventory,jdbcType=INTEGER},
+      indate = #{record.indate,jdbcType=INTEGER},
+      deadline = #{record.deadline,jdbcType=TIMESTAMP},
+      add_time = #{record.addTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.graduation.springboot.bean.Coupon">
+    update coupon
+    <set>
+      <if test="type != null">
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="desc != null">
+        desc = #{desc,jdbcType=VARCHAR},
+      </if>
+      <if test="limit != null">
+        limit = #{limit,jdbcType=SMALLINT},
+      </if>
+      <if test="low != null">
+        low = #{low,jdbcType=INTEGER},
+      </if>
+      <if test="high != null">
+        high = #{high,jdbcType=INTEGER},
+      </if>
+      <if test="inventory != null">
+        inventory = #{inventory,jdbcType=INTEGER},
+      </if>
+      <if test="indate != null">
+        indate = #{indate,jdbcType=INTEGER},
+      </if>
+      <if test="deadline != null">
+        deadline = #{deadline,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addTime != null">
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.graduation.springboot.bean.Coupon">
+    update coupon
+    set type = #{type,jdbcType=VARCHAR},
+      desc = #{desc,jdbcType=VARCHAR},
+      limit = #{limit,jdbcType=SMALLINT},
+      low = #{low,jdbcType=INTEGER},
+      high = #{high,jdbcType=INTEGER},
+      inventory = #{inventory,jdbcType=INTEGER},
+      indate = #{indate,jdbcType=INTEGER},
+      deadline = #{deadline,jdbcType=TIMESTAMP},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

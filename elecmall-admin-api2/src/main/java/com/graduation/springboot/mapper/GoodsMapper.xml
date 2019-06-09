@@ -1,0 +1,904 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.graduation.springboot.mapper.GoodsMapper">
+  <resultMap id="BaseResultMap" type="com.graduation.springboot.bean.Goods">
+    <id column="sku_id" jdbcType="CHAR" property="skuId" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="sell_point" jdbcType="VARCHAR" property="sellPoint" />
+    <result column="goods_name" jdbcType="CHAR" property="goodsName" />
+    <result column="category_id" jdbcType="INTEGER" property="categoryId" />
+    <result column="cover_url" jdbcType="VARCHAR" property="coverUrl" />
+    <result column="list_url" jdbcType="VARCHAR" property="listUrl" />
+    <result column="picSet_id" jdbcType="INTEGER" property="picsetId" />
+    <result column="brand" jdbcType="VARCHAR" property="brand" />
+    <result column="attr_size" jdbcType="VARCHAR" property="attrSize" />
+    <result column="attr_type" jdbcType="VARCHAR" property="attrType" />
+    <result column="attr_color" jdbcType="VARCHAR" property="attrColor" />
+    <result column="attr_texture" jdbcType="VARCHAR" property="attrTexture" />
+    <result column="price" jdbcType="DECIMAL" property="price" />
+    <result column="goods_status" jdbcType="VARCHAR" property="goodsStatus" />
+    <result column="inventory" jdbcType="INTEGER" property="inventory" />
+    <result column="sold_volumn" jdbcType="INTEGER" property="soldVolumn" />
+    <result column="is_choiceness" jdbcType="BIT" property="isChoiceness" />
+    <result column="is_onSale" jdbcType="BIT" property="isOnsale" />
+    <result column="discount_price" jdbcType="DECIMAL" property="discountPrice" />
+    <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.graduation.springboot.bean.Goods">
+    <result column="detail" jdbcType="LONGVARCHAR" property="detail" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    sku_id, title, sell_point, goods_name, category_id, cover_url, list_url, picSet_id, 
+    brand, attr_size, attr_type, attr_color, attr_texture, price, goods_status, inventory, 
+    sold_volumn, is_choiceness, is_onSale, discount_price, add_time, update_time
+  </sql>
+  <sql id="Blob_Column_List">
+    detail
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from goods
+    where sku_id = #{skuId,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from goods
+    where sku_id = #{skuId,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.graduation.springboot.bean.Goods">
+    insert into goods (sku_id, title, sell_point, 
+      goods_name, category_id, cover_url, 
+      list_url, picSet_id, brand, 
+      attr_size, attr_type, attr_color, 
+      attr_texture, price, goods_status, 
+      inventory, sold_volumn, is_choiceness, 
+      is_onSale, discount_price, add_time, 
+      update_time, detail)
+    values (#{skuId,jdbcType=CHAR}, #{title,jdbcType=VARCHAR}, #{sellPoint,jdbcType=VARCHAR}, 
+      #{goodsName,jdbcType=CHAR}, #{categoryId,jdbcType=INTEGER}, #{coverUrl,jdbcType=VARCHAR}, 
+      #{listUrl,jdbcType=VARCHAR}, #{picsetId,jdbcType=INTEGER}, #{brand,jdbcType=VARCHAR}, 
+      #{attrSize,jdbcType=VARCHAR}, #{attrType,jdbcType=VARCHAR}, #{attrColor,jdbcType=VARCHAR}, 
+      #{attrTexture,jdbcType=VARCHAR}, #{price,jdbcType=DECIMAL}, #{goodsStatus,jdbcType=VARCHAR}, 
+      #{inventory,jdbcType=INTEGER}, #{soldVolumn,jdbcType=INTEGER}, #{isChoiceness,jdbcType=BIT}, 
+      #{isOnsale,jdbcType=BIT}, #{discountPrice,jdbcType=DECIMAL}, #{addTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{detail,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.graduation.springboot.bean.Goods">
+    insert into goods
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="skuId != null">
+        sku_id,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="sellPoint != null">
+        sell_point,
+      </if>
+      <if test="goodsName != null">
+        goods_name,
+      </if>
+      <if test="categoryId != null">
+        category_id,
+      </if>
+      <if test="coverUrl != null">
+        cover_url,
+      </if>
+      <if test="listUrl != null">
+        list_url,
+      </if>
+      <if test="picsetId != null">
+        picSet_id,
+      </if>
+      <if test="brand != null">
+        brand,
+      </if>
+      <if test="attrSize != null">
+        attr_size,
+      </if>
+      <if test="attrType != null">
+        attr_type,
+      </if>
+      <if test="attrColor != null">
+        attr_color,
+      </if>
+      <if test="attrTexture != null">
+        attr_texture,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+      <if test="goodsStatus != null">
+        goods_status,
+      </if>
+      <if test="inventory != null">
+        inventory,
+      </if>
+      <if test="soldVolumn != null">
+        sold_volumn,
+      </if>
+      <if test="isChoiceness != null">
+        is_choiceness,
+      </if>
+      <if test="isOnsale != null">
+        is_onSale,
+      </if>
+      <if test="discountPrice != null">
+        discount_price,
+      </if>
+      <if test="addTime != null">
+        add_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="detail != null">
+        detail,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="skuId != null">
+        #{skuId,jdbcType=CHAR},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="sellPoint != null">
+        #{sellPoint,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsName != null">
+        #{goodsName,jdbcType=CHAR},
+      </if>
+      <if test="categoryId != null">
+        #{categoryId,jdbcType=INTEGER},
+      </if>
+      <if test="coverUrl != null">
+        #{coverUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="listUrl != null">
+        #{listUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="picsetId != null">
+        #{picsetId,jdbcType=INTEGER},
+      </if>
+      <if test="brand != null">
+        #{brand,jdbcType=VARCHAR},
+      </if>
+      <if test="attrSize != null">
+        #{attrSize,jdbcType=VARCHAR},
+      </if>
+      <if test="attrType != null">
+        #{attrType,jdbcType=VARCHAR},
+      </if>
+      <if test="attrColor != null">
+        #{attrColor,jdbcType=VARCHAR},
+      </if>
+      <if test="attrTexture != null">
+        #{attrTexture,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="goodsStatus != null">
+        #{goodsStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="inventory != null">
+        #{inventory,jdbcType=INTEGER},
+      </if>
+      <if test="soldVolumn != null">
+        #{soldVolumn,jdbcType=INTEGER},
+      </if>
+      <if test="isChoiceness != null">
+        #{isChoiceness,jdbcType=BIT},
+      </if>
+      <if test="isOnsale != null">
+        #{isOnsale,jdbcType=BIT},
+      </if>
+      <if test="discountPrice != null">
+        #{discountPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="addTime != null">
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="detail != null">
+        #{detail,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.graduation.springboot.bean.Goods">
+    update goods
+    <set>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="sellPoint != null">
+        sell_point = #{sellPoint,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsName != null">
+        goods_name = #{goodsName,jdbcType=CHAR},
+      </if>
+      <if test="categoryId != null">
+        category_id = #{categoryId,jdbcType=INTEGER},
+      </if>
+      <if test="coverUrl != null">
+        cover_url = #{coverUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="listUrl != null">
+        list_url = #{listUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="picsetId != null">
+        picSet_id = #{picsetId,jdbcType=INTEGER},
+      </if>
+      <if test="brand != null">
+        brand = #{brand,jdbcType=VARCHAR},
+      </if>
+      <if test="attrSize != null">
+        attr_size = #{attrSize,jdbcType=VARCHAR},
+      </if>
+      <if test="attrType != null">
+        attr_type = #{attrType,jdbcType=VARCHAR},
+      </if>
+      <if test="attrColor != null">
+        attr_color = #{attrColor,jdbcType=VARCHAR},
+      </if>
+      <if test="attrTexture != null">
+        attr_texture = #{attrTexture,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        price = #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="goodsStatus != null">
+        goods_status = #{goodsStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="inventory != null">
+        inventory = #{inventory,jdbcType=INTEGER},
+      </if>
+      <if test="soldVolumn != null">
+        sold_volumn = #{soldVolumn,jdbcType=INTEGER},
+      </if>
+      <if test="isChoiceness != null">
+        is_choiceness = #{isChoiceness,jdbcType=BIT},
+      </if>
+      <if test="isOnsale != null">
+        is_onSale = #{isOnsale,jdbcType=BIT},
+      </if>
+      <if test="discountPrice != null">
+        discount_price = #{discountPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="addTime != null">
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="detail != null">
+        detail = #{detail,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where sku_id = #{skuId,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.graduation.springboot.bean.Goods">
+    update goods
+    set title = #{title,jdbcType=VARCHAR},
+      sell_point = #{sellPoint,jdbcType=VARCHAR},
+      goods_name = #{goodsName,jdbcType=CHAR},
+      category_id = #{categoryId,jdbcType=INTEGER},
+      cover_url = #{coverUrl,jdbcType=VARCHAR},
+      list_url = #{listUrl,jdbcType=VARCHAR},
+      picSet_id = #{picsetId,jdbcType=INTEGER},
+      brand = #{brand,jdbcType=VARCHAR},
+      attr_size = #{attrSize,jdbcType=VARCHAR},
+      attr_type = #{attrType,jdbcType=VARCHAR},
+      attr_color = #{attrColor,jdbcType=VARCHAR},
+      attr_texture = #{attrTexture,jdbcType=VARCHAR},
+      price = #{price,jdbcType=DECIMAL},
+      goods_status = #{goodsStatus,jdbcType=VARCHAR},
+      inventory = #{inventory,jdbcType=INTEGER},
+      sold_volumn = #{soldVolumn,jdbcType=INTEGER},
+      is_choiceness = #{isChoiceness,jdbcType=BIT},
+      is_onSale = #{isOnsale,jdbcType=BIT},
+      discount_price = #{discountPrice,jdbcType=DECIMAL},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      detail = #{detail,jdbcType=LONGVARCHAR}
+    where sku_id = #{skuId,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.graduation.springboot.bean.Goods">
+    update goods
+    set title = #{title,jdbcType=VARCHAR},
+      sell_point = #{sellPoint,jdbcType=VARCHAR},
+      goods_name = #{goodsName,jdbcType=CHAR},
+      category_id = #{categoryId,jdbcType=INTEGER},
+      cover_url = #{coverUrl,jdbcType=VARCHAR},
+      list_url = #{listUrl,jdbcType=VARCHAR},
+      picSet_id = #{picsetId,jdbcType=INTEGER},
+      brand = #{brand,jdbcType=VARCHAR},
+      attr_size = #{attrSize,jdbcType=VARCHAR},
+      attr_type = #{attrType,jdbcType=VARCHAR},
+      attr_color = #{attrColor,jdbcType=VARCHAR},
+      attr_texture = #{attrTexture,jdbcType=VARCHAR},
+      price = #{price,jdbcType=DECIMAL},
+      goods_status = #{goodsStatus,jdbcType=VARCHAR},
+      inventory = #{inventory,jdbcType=INTEGER},
+      sold_volumn = #{soldVolumn,jdbcType=INTEGER},
+      is_choiceness = #{isChoiceness,jdbcType=BIT},
+      is_onSale = #{isOnsale,jdbcType=BIT},
+      discount_price = #{discountPrice,jdbcType=DECIMAL},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where sku_id = #{skuId,jdbcType=CHAR}
+  </update>
+  <resultMap id="BaseResultMap" type="com.graduation.springboot.bean.Goods">
+    <id column="sku_id" jdbcType="CHAR" property="skuId" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="sell_point" jdbcType="VARCHAR" property="sellPoint" />
+    <result column="goods_name" jdbcType="CHAR" property="goodsName" />
+    <result column="category_id" jdbcType="INTEGER" property="categoryId" />
+    <result column="cover_url" jdbcType="VARCHAR" property="coverUrl" />
+    <result column="list_url" jdbcType="VARCHAR" property="listUrl" />
+    <result column="picSet_id" jdbcType="INTEGER" property="picsetId" />
+    <result column="brand" jdbcType="VARCHAR" property="brand" />
+    <result column="attr_size" jdbcType="VARCHAR" property="attrSize" />
+    <result column="attr_type" jdbcType="VARCHAR" property="attrType" />
+    <result column="attr_color" jdbcType="VARCHAR" property="attrColor" />
+    <result column="attr_texture" jdbcType="VARCHAR" property="attrTexture" />
+    <result column="price" jdbcType="DECIMAL" property="price" />
+    <result column="goods_status" jdbcType="VARCHAR" property="goodsStatus" />
+    <result column="inventory" jdbcType="INTEGER" property="inventory" />
+    <result column="sold_volumn" jdbcType="INTEGER" property="soldVolumn" />
+    <result column="is_choiceness" jdbcType="BIT" property="isChoiceness" />
+    <result column="is_onSale" jdbcType="BIT" property="isOnsale" />
+    <result column="discount_price" jdbcType="DECIMAL" property="discountPrice" />
+    <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.graduation.springboot.bean.Goods">
+    <result column="detail" jdbcType="LONGVARCHAR" property="detail" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    sku_id, title, sell_point, goods_name, category_id, cover_url, list_url, picSet_id, 
+    brand, attr_size, attr_type, attr_color, attr_texture, price, goods_status, inventory, 
+    sold_volumn, is_choiceness, is_onSale, discount_price, add_time, update_time
+  </sql>
+  <sql id="Blob_Column_List">
+    detail
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.graduation.springboot.bean.GoodsExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from goods
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="com.graduation.springboot.bean.GoodsExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from goods
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from goods
+    where sku_id = #{skuId,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from goods
+    where sku_id = #{skuId,jdbcType=CHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.graduation.springboot.bean.GoodsExample">
+    delete from goods
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.graduation.springboot.bean.Goods">
+    insert into goods (sku_id, title, sell_point, 
+      goods_name, category_id, cover_url, 
+      list_url, picSet_id, brand, 
+      attr_size, attr_type, attr_color, 
+      attr_texture, price, goods_status, 
+      inventory, sold_volumn, is_choiceness, 
+      is_onSale, discount_price, add_time, 
+      update_time, detail)
+    values (#{skuId,jdbcType=CHAR}, #{title,jdbcType=VARCHAR}, #{sellPoint,jdbcType=VARCHAR}, 
+      #{goodsName,jdbcType=CHAR}, #{categoryId,jdbcType=INTEGER}, #{coverUrl,jdbcType=VARCHAR}, 
+      #{listUrl,jdbcType=VARCHAR}, #{picsetId,jdbcType=INTEGER}, #{brand,jdbcType=VARCHAR}, 
+      #{attrSize,jdbcType=VARCHAR}, #{attrType,jdbcType=VARCHAR}, #{attrColor,jdbcType=VARCHAR}, 
+      #{attrTexture,jdbcType=VARCHAR}, #{price,jdbcType=DECIMAL}, #{goodsStatus,jdbcType=VARCHAR}, 
+      #{inventory,jdbcType=INTEGER}, #{soldVolumn,jdbcType=INTEGER}, #{isChoiceness,jdbcType=BIT}, 
+      #{isOnsale,jdbcType=BIT}, #{discountPrice,jdbcType=DECIMAL}, #{addTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{detail,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.graduation.springboot.bean.Goods">
+    insert into goods
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="skuId != null">
+        sku_id,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="sellPoint != null">
+        sell_point,
+      </if>
+      <if test="goodsName != null">
+        goods_name,
+      </if>
+      <if test="categoryId != null">
+        category_id,
+      </if>
+      <if test="coverUrl != null">
+        cover_url,
+      </if>
+      <if test="listUrl != null">
+        list_url,
+      </if>
+      <if test="picsetId != null">
+        picSet_id,
+      </if>
+      <if test="brand != null">
+        brand,
+      </if>
+      <if test="attrSize != null">
+        attr_size,
+      </if>
+      <if test="attrType != null">
+        attr_type,
+      </if>
+      <if test="attrColor != null">
+        attr_color,
+      </if>
+      <if test="attrTexture != null">
+        attr_texture,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+      <if test="goodsStatus != null">
+        goods_status,
+      </if>
+      <if test="inventory != null">
+        inventory,
+      </if>
+      <if test="soldVolumn != null">
+        sold_volumn,
+      </if>
+      <if test="isChoiceness != null">
+        is_choiceness,
+      </if>
+      <if test="isOnsale != null">
+        is_onSale,
+      </if>
+      <if test="discountPrice != null">
+        discount_price,
+      </if>
+      <if test="addTime != null">
+        add_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="detail != null">
+        detail,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="skuId != null">
+        #{skuId,jdbcType=CHAR},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="sellPoint != null">
+        #{sellPoint,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsName != null">
+        #{goodsName,jdbcType=CHAR},
+      </if>
+      <if test="categoryId != null">
+        #{categoryId,jdbcType=INTEGER},
+      </if>
+      <if test="coverUrl != null">
+        #{coverUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="listUrl != null">
+        #{listUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="picsetId != null">
+        #{picsetId,jdbcType=INTEGER},
+      </if>
+      <if test="brand != null">
+        #{brand,jdbcType=VARCHAR},
+      </if>
+      <if test="attrSize != null">
+        #{attrSize,jdbcType=VARCHAR},
+      </if>
+      <if test="attrType != null">
+        #{attrType,jdbcType=VARCHAR},
+      </if>
+      <if test="attrColor != null">
+        #{attrColor,jdbcType=VARCHAR},
+      </if>
+      <if test="attrTexture != null">
+        #{attrTexture,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="goodsStatus != null">
+        #{goodsStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="inventory != null">
+        #{inventory,jdbcType=INTEGER},
+      </if>
+      <if test="soldVolumn != null">
+        #{soldVolumn,jdbcType=INTEGER},
+      </if>
+      <if test="isChoiceness != null">
+        #{isChoiceness,jdbcType=BIT},
+      </if>
+      <if test="isOnsale != null">
+        #{isOnsale,jdbcType=BIT},
+      </if>
+      <if test="discountPrice != null">
+        #{discountPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="addTime != null">
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="detail != null">
+        #{detail,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.graduation.springboot.bean.GoodsExample" resultType="java.lang.Integer">
+    select count(*) from goods
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update goods
+    <set>
+      <if test="record.skuId != null">
+        sku_id = #{record.skuId,jdbcType=CHAR},
+      </if>
+      <if test="record.title != null">
+        title = #{record.title,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sellPoint != null">
+        sell_point = #{record.sellPoint,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodsName != null">
+        goods_name = #{record.goodsName,jdbcType=CHAR},
+      </if>
+      <if test="record.categoryId != null">
+        category_id = #{record.categoryId,jdbcType=INTEGER},
+      </if>
+      <if test="record.coverUrl != null">
+        cover_url = #{record.coverUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.listUrl != null">
+        list_url = #{record.listUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.picsetId != null">
+        picSet_id = #{record.picsetId,jdbcType=INTEGER},
+      </if>
+      <if test="record.brand != null">
+        brand = #{record.brand,jdbcType=VARCHAR},
+      </if>
+      <if test="record.attrSize != null">
+        attr_size = #{record.attrSize,jdbcType=VARCHAR},
+      </if>
+      <if test="record.attrType != null">
+        attr_type = #{record.attrType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.attrColor != null">
+        attr_color = #{record.attrColor,jdbcType=VARCHAR},
+      </if>
+      <if test="record.attrTexture != null">
+        attr_texture = #{record.attrTexture,jdbcType=VARCHAR},
+      </if>
+      <if test="record.price != null">
+        price = #{record.price,jdbcType=DECIMAL},
+      </if>
+      <if test="record.goodsStatus != null">
+        goods_status = #{record.goodsStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.inventory != null">
+        inventory = #{record.inventory,jdbcType=INTEGER},
+      </if>
+      <if test="record.soldVolumn != null">
+        sold_volumn = #{record.soldVolumn,jdbcType=INTEGER},
+      </if>
+      <if test="record.isChoiceness != null">
+        is_choiceness = #{record.isChoiceness,jdbcType=BIT},
+      </if>
+      <if test="record.isOnsale != null">
+        is_onSale = #{record.isOnsale,jdbcType=BIT},
+      </if>
+      <if test="record.discountPrice != null">
+        discount_price = #{record.discountPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.addTime != null">
+        add_time = #{record.addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.detail != null">
+        detail = #{record.detail,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update goods
+    set sku_id = #{record.skuId,jdbcType=CHAR},
+      title = #{record.title,jdbcType=VARCHAR},
+      sell_point = #{record.sellPoint,jdbcType=VARCHAR},
+      goods_name = #{record.goodsName,jdbcType=CHAR},
+      category_id = #{record.categoryId,jdbcType=INTEGER},
+      cover_url = #{record.coverUrl,jdbcType=VARCHAR},
+      list_url = #{record.listUrl,jdbcType=VARCHAR},
+      picSet_id = #{record.picsetId,jdbcType=INTEGER},
+      brand = #{record.brand,jdbcType=VARCHAR},
+      attr_size = #{record.attrSize,jdbcType=VARCHAR},
+      attr_type = #{record.attrType,jdbcType=VARCHAR},
+      attr_color = #{record.attrColor,jdbcType=VARCHAR},
+      attr_texture = #{record.attrTexture,jdbcType=VARCHAR},
+      price = #{record.price,jdbcType=DECIMAL},
+      goods_status = #{record.goodsStatus,jdbcType=VARCHAR},
+      inventory = #{record.inventory,jdbcType=INTEGER},
+      sold_volumn = #{record.soldVolumn,jdbcType=INTEGER},
+      is_choiceness = #{record.isChoiceness,jdbcType=BIT},
+      is_onSale = #{record.isOnsale,jdbcType=BIT},
+      discount_price = #{record.discountPrice,jdbcType=DECIMAL},
+      add_time = #{record.addTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      detail = #{record.detail,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update goods
+    set sku_id = #{record.skuId,jdbcType=CHAR},
+      title = #{record.title,jdbcType=VARCHAR},
+      sell_point = #{record.sellPoint,jdbcType=VARCHAR},
+      goods_name = #{record.goodsName,jdbcType=CHAR},
+      category_id = #{record.categoryId,jdbcType=INTEGER},
+      cover_url = #{record.coverUrl,jdbcType=VARCHAR},
+      list_url = #{record.listUrl,jdbcType=VARCHAR},
+      picSet_id = #{record.picsetId,jdbcType=INTEGER},
+      brand = #{record.brand,jdbcType=VARCHAR},
+      attr_size = #{record.attrSize,jdbcType=VARCHAR},
+      attr_type = #{record.attrType,jdbcType=VARCHAR},
+      attr_color = #{record.attrColor,jdbcType=VARCHAR},
+      attr_texture = #{record.attrTexture,jdbcType=VARCHAR},
+      price = #{record.price,jdbcType=DECIMAL},
+      goods_status = #{record.goodsStatus,jdbcType=VARCHAR},
+      inventory = #{record.inventory,jdbcType=INTEGER},
+      sold_volumn = #{record.soldVolumn,jdbcType=INTEGER},
+      is_choiceness = #{record.isChoiceness,jdbcType=BIT},
+      is_onSale = #{record.isOnsale,jdbcType=BIT},
+      discount_price = #{record.discountPrice,jdbcType=DECIMAL},
+      add_time = #{record.addTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.graduation.springboot.bean.Goods">
+    update goods
+    <set>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="sellPoint != null">
+        sell_point = #{sellPoint,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsName != null">
+        goods_name = #{goodsName,jdbcType=CHAR},
+      </if>
+      <if test="categoryId != null">
+        category_id = #{categoryId,jdbcType=INTEGER},
+      </if>
+      <if test="coverUrl != null">
+        cover_url = #{coverUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="listUrl != null">
+        list_url = #{listUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="picsetId != null">
+        picSet_id = #{picsetId,jdbcType=INTEGER},
+      </if>
+      <if test="brand != null">
+        brand = #{brand,jdbcType=VARCHAR},
+      </if>
+      <if test="attrSize != null">
+        attr_size = #{attrSize,jdbcType=VARCHAR},
+      </if>
+      <if test="attrType != null">
+        attr_type = #{attrType,jdbcType=VARCHAR},
+      </if>
+      <if test="attrColor != null">
+        attr_color = #{attrColor,jdbcType=VARCHAR},
+      </if>
+      <if test="attrTexture != null">
+        attr_texture = #{attrTexture,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        price = #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="goodsStatus != null">
+        goods_status = #{goodsStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="inventory != null">
+        inventory = #{inventory,jdbcType=INTEGER},
+      </if>
+      <if test="soldVolumn != null">
+        sold_volumn = #{soldVolumn,jdbcType=INTEGER},
+      </if>
+      <if test="isChoiceness != null">
+        is_choiceness = #{isChoiceness,jdbcType=BIT},
+      </if>
+      <if test="isOnsale != null">
+        is_onSale = #{isOnsale,jdbcType=BIT},
+      </if>
+      <if test="discountPrice != null">
+        discount_price = #{discountPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="addTime != null">
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="detail != null">
+        detail = #{detail,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where sku_id = #{skuId,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.graduation.springboot.bean.Goods">
+    update goods
+    set title = #{title,jdbcType=VARCHAR},
+      sell_point = #{sellPoint,jdbcType=VARCHAR},
+      goods_name = #{goodsName,jdbcType=CHAR},
+      category_id = #{categoryId,jdbcType=INTEGER},
+      cover_url = #{coverUrl,jdbcType=VARCHAR},
+      list_url = #{listUrl,jdbcType=VARCHAR},
+      picSet_id = #{picsetId,jdbcType=INTEGER},
+      brand = #{brand,jdbcType=VARCHAR},
+      attr_size = #{attrSize,jdbcType=VARCHAR},
+      attr_type = #{attrType,jdbcType=VARCHAR},
+      attr_color = #{attrColor,jdbcType=VARCHAR},
+      attr_texture = #{attrTexture,jdbcType=VARCHAR},
+      price = #{price,jdbcType=DECIMAL},
+      goods_status = #{goodsStatus,jdbcType=VARCHAR},
+      inventory = #{inventory,jdbcType=INTEGER},
+      sold_volumn = #{soldVolumn,jdbcType=INTEGER},
+      is_choiceness = #{isChoiceness,jdbcType=BIT},
+      is_onSale = #{isOnsale,jdbcType=BIT},
+      discount_price = #{discountPrice,jdbcType=DECIMAL},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      detail = #{detail,jdbcType=LONGVARCHAR}
+    where sku_id = #{skuId,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.graduation.springboot.bean.Goods">
+    update goods
+    set title = #{title,jdbcType=VARCHAR},
+      sell_point = #{sellPoint,jdbcType=VARCHAR},
+      goods_name = #{goodsName,jdbcType=CHAR},
+      category_id = #{categoryId,jdbcType=INTEGER},
+      cover_url = #{coverUrl,jdbcType=VARCHAR},
+      list_url = #{listUrl,jdbcType=VARCHAR},
+      picSet_id = #{picsetId,jdbcType=INTEGER},
+      brand = #{brand,jdbcType=VARCHAR},
+      attr_size = #{attrSize,jdbcType=VARCHAR},
+      attr_type = #{attrType,jdbcType=VARCHAR},
+      attr_color = #{attrColor,jdbcType=VARCHAR},
+      attr_texture = #{attrTexture,jdbcType=VARCHAR},
+      price = #{price,jdbcType=DECIMAL},
+      goods_status = #{goodsStatus,jdbcType=VARCHAR},
+      inventory = #{inventory,jdbcType=INTEGER},
+      sold_volumn = #{soldVolumn,jdbcType=INTEGER},
+      is_choiceness = #{isChoiceness,jdbcType=BIT},
+      is_onSale = #{isOnsale,jdbcType=BIT},
+      discount_price = #{discountPrice,jdbcType=DECIMAL},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where sku_id = #{skuId,jdbcType=CHAR}
+  </update>
+</mapper>

@@ -1,0 +1,548 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.graduation.springboot.mapper.OrderUserMapper">
+  <resultMap id="BaseResultMap" type="com.graduation.springboot.bean.OrderUser">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="openid" jdbcType="VARCHAR" property="openid" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="address_id" jdbcType="INTEGER" property="addressId" />
+    <result column="total_price" jdbcType="DECIMAL" property="totalPrice" />
+    <result column="feight_fee" jdbcType="DECIMAL" property="feightFee" />
+    <result column="coupon_price" jdbcType="DECIMAL" property="couponPrice" />
+    <result column="expire_time" jdbcType="TIME" property="expireTime" />
+    <result column="pay_time" jdbcType="TIMESTAMP" property="payTime" />
+    <result column="ship_info" jdbcType="VARCHAR" property="shipInfo" />
+    <result column="ship_channel" jdbcType="VARCHAR" property="shipChannel" />
+    <result column="confirm_time" jdbcType="TIMESTAMP" property="confirmTime" />
+    <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, openid, status, address_id, total_price, feight_fee, coupon_price, expire_time, 
+    pay_time, ship_info, ship_channel, confirm_time, add_time, update_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from order_user
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from order_user
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.graduation.springboot.bean.OrderUser">
+    insert into order_user (id, openid, status, 
+      address_id, total_price, feight_fee, 
+      coupon_price, expire_time, pay_time, 
+      ship_info, ship_channel, confirm_time, 
+      add_time, update_time)
+    values (#{id,jdbcType=INTEGER}, #{openid,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
+      #{addressId,jdbcType=INTEGER}, #{totalPrice,jdbcType=DECIMAL}, #{feightFee,jdbcType=DECIMAL}, 
+      #{couponPrice,jdbcType=DECIMAL}, #{expireTime,jdbcType=TIME}, #{payTime,jdbcType=TIMESTAMP}, 
+      #{shipInfo,jdbcType=VARCHAR}, #{shipChannel,jdbcType=VARCHAR}, #{confirmTime,jdbcType=TIMESTAMP}, 
+      #{addTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.graduation.springboot.bean.OrderUser">
+    insert into order_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="openid != null">
+        openid,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="addressId != null">
+        address_id,
+      </if>
+      <if test="totalPrice != null">
+        total_price,
+      </if>
+      <if test="feightFee != null">
+        feight_fee,
+      </if>
+      <if test="couponPrice != null">
+        coupon_price,
+      </if>
+      <if test="expireTime != null">
+        expire_time,
+      </if>
+      <if test="payTime != null">
+        pay_time,
+      </if>
+      <if test="shipInfo != null">
+        ship_info,
+      </if>
+      <if test="shipChannel != null">
+        ship_channel,
+      </if>
+      <if test="confirmTime != null">
+        confirm_time,
+      </if>
+      <if test="addTime != null">
+        add_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="openid != null">
+        #{openid,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="addressId != null">
+        #{addressId,jdbcType=INTEGER},
+      </if>
+      <if test="totalPrice != null">
+        #{totalPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="feightFee != null">
+        #{feightFee,jdbcType=DECIMAL},
+      </if>
+      <if test="couponPrice != null">
+        #{couponPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="expireTime != null">
+        #{expireTime,jdbcType=TIME},
+      </if>
+      <if test="payTime != null">
+        #{payTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="shipInfo != null">
+        #{shipInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="shipChannel != null">
+        #{shipChannel,jdbcType=VARCHAR},
+      </if>
+      <if test="confirmTime != null">
+        #{confirmTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addTime != null">
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.graduation.springboot.bean.OrderUser">
+    update order_user
+    <set>
+      <if test="openid != null">
+        openid = #{openid,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="addressId != null">
+        address_id = #{addressId,jdbcType=INTEGER},
+      </if>
+      <if test="totalPrice != null">
+        total_price = #{totalPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="feightFee != null">
+        feight_fee = #{feightFee,jdbcType=DECIMAL},
+      </if>
+      <if test="couponPrice != null">
+        coupon_price = #{couponPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="expireTime != null">
+        expire_time = #{expireTime,jdbcType=TIME},
+      </if>
+      <if test="payTime != null">
+        pay_time = #{payTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="shipInfo != null">
+        ship_info = #{shipInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="shipChannel != null">
+        ship_channel = #{shipChannel,jdbcType=VARCHAR},
+      </if>
+      <if test="confirmTime != null">
+        confirm_time = #{confirmTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addTime != null">
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.graduation.springboot.bean.OrderUser">
+    update order_user
+    set openid = #{openid,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      address_id = #{addressId,jdbcType=INTEGER},
+      total_price = #{totalPrice,jdbcType=DECIMAL},
+      feight_fee = #{feightFee,jdbcType=DECIMAL},
+      coupon_price = #{couponPrice,jdbcType=DECIMAL},
+      expire_time = #{expireTime,jdbcType=TIME},
+      pay_time = #{payTime,jdbcType=TIMESTAMP},
+      ship_info = #{shipInfo,jdbcType=VARCHAR},
+      ship_channel = #{shipChannel,jdbcType=VARCHAR},
+      confirm_time = #{confirmTime,jdbcType=TIMESTAMP},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.graduation.springboot.bean.OrderUser">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="openid" jdbcType="VARCHAR" property="openid" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="address_id" jdbcType="INTEGER" property="addressId" />
+    <result column="total_price" jdbcType="DECIMAL" property="totalPrice" />
+    <result column="feight_fee" jdbcType="DECIMAL" property="feightFee" />
+    <result column="coupon_price" jdbcType="DECIMAL" property="couponPrice" />
+    <result column="expire_time" jdbcType="TIME" property="expireTime" />
+    <result column="pay_time" jdbcType="TIMESTAMP" property="payTime" />
+    <result column="ship_info" jdbcType="VARCHAR" property="shipInfo" />
+    <result column="ship_channel" jdbcType="VARCHAR" property="shipChannel" />
+    <result column="confirm_time" jdbcType="TIMESTAMP" property="confirmTime" />
+    <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, openid, status, address_id, total_price, feight_fee, coupon_price, expire_time, 
+    pay_time, ship_info, ship_channel, confirm_time, add_time, update_time
+  </sql>
+  <select id="selectByExample" parameterType="com.graduation.springboot.bean.OrderUserExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from order_user
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from order_user
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from order_user
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.graduation.springboot.bean.OrderUserExample">
+    delete from order_user
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.graduation.springboot.bean.OrderUser">
+    insert into order_user (id, openid, status, 
+      address_id, total_price, feight_fee, 
+      coupon_price, expire_time, pay_time, 
+      ship_info, ship_channel, confirm_time, 
+      add_time, update_time)
+    values (#{id,jdbcType=INTEGER}, #{openid,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
+      #{addressId,jdbcType=INTEGER}, #{totalPrice,jdbcType=DECIMAL}, #{feightFee,jdbcType=DECIMAL}, 
+      #{couponPrice,jdbcType=DECIMAL}, #{expireTime,jdbcType=TIME}, #{payTime,jdbcType=TIMESTAMP}, 
+      #{shipInfo,jdbcType=VARCHAR}, #{shipChannel,jdbcType=VARCHAR}, #{confirmTime,jdbcType=TIMESTAMP}, 
+      #{addTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.graduation.springboot.bean.OrderUser">
+    insert into order_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="openid != null">
+        openid,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="addressId != null">
+        address_id,
+      </if>
+      <if test="totalPrice != null">
+        total_price,
+      </if>
+      <if test="feightFee != null">
+        feight_fee,
+      </if>
+      <if test="couponPrice != null">
+        coupon_price,
+      </if>
+      <if test="expireTime != null">
+        expire_time,
+      </if>
+      <if test="payTime != null">
+        pay_time,
+      </if>
+      <if test="shipInfo != null">
+        ship_info,
+      </if>
+      <if test="shipChannel != null">
+        ship_channel,
+      </if>
+      <if test="confirmTime != null">
+        confirm_time,
+      </if>
+      <if test="addTime != null">
+        add_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="openid != null">
+        #{openid,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="addressId != null">
+        #{addressId,jdbcType=INTEGER},
+      </if>
+      <if test="totalPrice != null">
+        #{totalPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="feightFee != null">
+        #{feightFee,jdbcType=DECIMAL},
+      </if>
+      <if test="couponPrice != null">
+        #{couponPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="expireTime != null">
+        #{expireTime,jdbcType=TIME},
+      </if>
+      <if test="payTime != null">
+        #{payTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="shipInfo != null">
+        #{shipInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="shipChannel != null">
+        #{shipChannel,jdbcType=VARCHAR},
+      </if>
+      <if test="confirmTime != null">
+        #{confirmTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addTime != null">
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.graduation.springboot.bean.OrderUserExample" resultType="java.lang.Integer">
+    select count(*) from order_user
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update order_user
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.openid != null">
+        openid = #{record.openid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null">
+        status = #{record.status,jdbcType=VARCHAR},
+      </if>
+      <if test="record.addressId != null">
+        address_id = #{record.addressId,jdbcType=INTEGER},
+      </if>
+      <if test="record.totalPrice != null">
+        total_price = #{record.totalPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.feightFee != null">
+        feight_fee = #{record.feightFee,jdbcType=DECIMAL},
+      </if>
+      <if test="record.couponPrice != null">
+        coupon_price = #{record.couponPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.expireTime != null">
+        expire_time = #{record.expireTime,jdbcType=TIME},
+      </if>
+      <if test="record.payTime != null">
+        pay_time = #{record.payTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.shipInfo != null">
+        ship_info = #{record.shipInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shipChannel != null">
+        ship_channel = #{record.shipChannel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.confirmTime != null">
+        confirm_time = #{record.confirmTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.addTime != null">
+        add_time = #{record.addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update order_user
+    set id = #{record.id,jdbcType=INTEGER},
+      openid = #{record.openid,jdbcType=VARCHAR},
+      status = #{record.status,jdbcType=VARCHAR},
+      address_id = #{record.addressId,jdbcType=INTEGER},
+      total_price = #{record.totalPrice,jdbcType=DECIMAL},
+      feight_fee = #{record.feightFee,jdbcType=DECIMAL},
+      coupon_price = #{record.couponPrice,jdbcType=DECIMAL},
+      expire_time = #{record.expireTime,jdbcType=TIME},
+      pay_time = #{record.payTime,jdbcType=TIMESTAMP},
+      ship_info = #{record.shipInfo,jdbcType=VARCHAR},
+      ship_channel = #{record.shipChannel,jdbcType=VARCHAR},
+      confirm_time = #{record.confirmTime,jdbcType=TIMESTAMP},
+      add_time = #{record.addTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.graduation.springboot.bean.OrderUser">
+    update order_user
+    <set>
+      <if test="openid != null">
+        openid = #{openid,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="addressId != null">
+        address_id = #{addressId,jdbcType=INTEGER},
+      </if>
+      <if test="totalPrice != null">
+        total_price = #{totalPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="feightFee != null">
+        feight_fee = #{feightFee,jdbcType=DECIMAL},
+      </if>
+      <if test="couponPrice != null">
+        coupon_price = #{couponPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="expireTime != null">
+        expire_time = #{expireTime,jdbcType=TIME},
+      </if>
+      <if test="payTime != null">
+        pay_time = #{payTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="shipInfo != null">
+        ship_info = #{shipInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="shipChannel != null">
+        ship_channel = #{shipChannel,jdbcType=VARCHAR},
+      </if>
+      <if test="confirmTime != null">
+        confirm_time = #{confirmTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addTime != null">
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.graduation.springboot.bean.OrderUser">
+    update order_user
+    set openid = #{openid,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      address_id = #{addressId,jdbcType=INTEGER},
+      total_price = #{totalPrice,jdbcType=DECIMAL},
+      feight_fee = #{feightFee,jdbcType=DECIMAL},
+      coupon_price = #{couponPrice,jdbcType=DECIMAL},
+      expire_time = #{expireTime,jdbcType=TIME},
+      pay_time = #{payTime,jdbcType=TIMESTAMP},
+      ship_info = #{shipInfo,jdbcType=VARCHAR},
+      ship_channel = #{shipChannel,jdbcType=VARCHAR},
+      confirm_time = #{confirmTime,jdbcType=TIMESTAMP},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
